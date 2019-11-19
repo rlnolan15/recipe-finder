@@ -18,7 +18,11 @@ class App extends React.Component {
   //
 
   render() {
-    return <SearchBoxes />;
+    return (
+      <div className="parentContainer">
+        <SearchBoxes />
+      </div>
+    );
   }
 }
 

@@ -2,33 +2,84 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 300px;
+  color: #4d4d4d;
+  margin-left: 25px;
 }
 .recipes {
   width: 300px;
-  height: 300px;
-  border: 1px solid black;
+  border: 1px solid grey;
   display: block;
-  margin: 5px;
-  padding: 5px;
+  margin: 10px;
 }
 .title {
   text-align: center;
   display: block;
-  margin-top: 5px;
+  margin-top: -25px;
 }
 .ingredients {
-  margin-left: 5px;
+  padding-left: 5px;
   display: block;
 }
 .searchBoxContainer {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.form {
-  display: inline-block;
-  margin: auto;
+.formContainer {
+  margin-left: 25px;
+}
+.image {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+}
+.quip {
+  font-style: italic;
+  margin-top: -15px;
+}
+.headerTitleContainer {
+  position: relative;
+}
+.header {
+  width: 1370px;
+  height: 350px;
+  object-fit: cover;
+}
+.text {
+  position: absolute;
+  color: white;
+  left: 10px;
+  top: 100px;
+}
+.formDataContainer {
+  background-color: white;
+  padding: 10px;
+  width: 1350px;
+  margin-top: -5px;
+}
+.body {
+  background-color: #e6e6e6;
+}
+.recipeColumn {
+  columns: 2 auto;
+}
+.submitButton {
+  margin-left: 10px;
+  height: 20px;
+  width: 60px;
+}
+.typeLabel {
+  margin-left: 10px;
+}
+.ingredientsLabel {
+  margin-left: 10px;
+}
+
+.parentContainer {
+  width: 1400px;
+  margin: 10px;
+}
+.favoritesButton {
+  height: 20px;
+  width: 80px;
+  right: 10px;
 }
