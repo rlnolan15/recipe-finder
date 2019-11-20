@@ -15,6 +15,9 @@
   text-align: center;
   display: block;
   margin-top: -25px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font: arial;
 }
 .ingredients {
   padding-left: 5px;
@@ -63,15 +66,36 @@
   columns: 2 auto;
 }
 .submitButton {
-  margin-left: 10px;
-  height: 20px;
-  width: 60px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  background: #3ecf8e;
+  text-shadow: 0 1px 3px rgba(36, 180, 126, 0.4);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 .typeLabel {
   margin-left: 10px;
 }
 .ingredientsLabel {
   margin-left: 10px;
+  font-size: 20px;
+  font: arial;
 }
 
 .parentContainer {
@@ -79,7 +103,54 @@
   margin: 10px;
 }
 .favoritesButton {
-  height: 20px;
-  width: 80px;
-  right: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  background: #3ecf8e;
+  text-shadow: 0 1px 3px rgba(36, 180, 126, 0.4);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 365px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.favoritesButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.expand {
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  background: #3ecf8e;
+  text-shadow: 0 1px 3px rgba(36, 180, 126, 0.4);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 65px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.expand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.textBox {
+  width: 400px;
+  height: 30px;
 }

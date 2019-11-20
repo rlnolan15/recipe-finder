@@ -1,46 +1,49 @@
 import axios from "axios";
 import unirest from "unirest";
 import faker from "faker";
+import Expand from "react-expand-animated";
 
 class SearchBoxes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      i: "",
-      q: "",
+      i: "tequila",
       results: [],
       title: String,
       link: String,
       ingredients: String,
-      hover: false
+      hover: false,
+      open: false
     };
+
+    //HTTP REQUESTS//
     this.getIngredients = this.getIngredients.bind(this);
+    this.toggle = this.toggle.bind(this);
+
+    //HANDLERS//
     this.handleI = this.handleI.bind(this);
-    this.handleJ = this.handleJ.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  toggle() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
   onHover() {
     this.setState({
       hover: !this.state.hover
     });
   }
-
   handleI(e) {
     this.setState({
       i: e.target.value
     });
   }
-  handleJ(e) {
-    this.setState({
-      q: e.target.value
-    });
-  }
   handleSubmit(e) {
     this.getIngredients();
     this.setState({
-      i: "",
-      q: ""
+      i: ""
     });
     e.preventDefault();
   }
@@ -48,20 +51,17 @@ class SearchBoxes extends React.Component {
   async getIngredients() {
     let response = await axios({
       method: "GET",
-      url: "https://recipe-puppy.p.rapidapi.com/",
+      url: `https://api.edamam.com/search?q=${this.state.i}&app_id=3ec84f36&app_key=9daeb39e07bf34ea26cf263df010d38b`,
       headers: {
-        "x-rapidapi-host": "recipe-puppy.p.rapidapi.com",
-        "x-rapidapi-key": "cb8c96604amsh40f56a11ab937a7p1fe68ejsn788fdccf68b1"
-      },
-      params: {
-        p: 1,
-        i: this.state.i,
-        q: this.state.q
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+        "Access-Control-Allow-Origin": "*"
       }
     })
       .then(response => {
+        console.log(response.data.hits);
         this.setState({
-          results: response.data.results
+          results: response.data.hits
         });
       })
       .catch(err => {
@@ -100,11 +100,10 @@ class SearchBoxes extends React.Component {
         left: "90%"
       },
       invisWrapper: {
-        // width: "100%",
-        // height: "100%",
         position: "relative"
       }
     };
+    const transitions = ["height", "opacity", "background"];
     return (
       <div className="searchBoxContainer">
         <div className="headerTitleContainer">
@@ -123,15 +122,15 @@ class SearchBoxes extends React.Component {
           <div className="formContainer">
             <form onSubmit={this.handleSubmit}>
               <label className="ingredientsLabel">
-                Ingredients:&nbsp;
-                <input type="text" name="ingredients" onChange={this.handleI} />
+                Random Things From Your Fridge:&nbsp;
+                <input
+                  type="text"
+                  name="ingredients"
+                  onChange={this.handleI}
+                  className="textBox"
+                />
               </label>
-              <label className="typeLabel">
-                {"      "}
-                Type:&nbsp;
-                <input type="text" name="type" onChange={this.handleQ} />
-                <input className="submitButton" type="submit" value="Search" />
-              </label>
+              <input className="submitButton" type="submit" value="Search" />
               <button className="favoritesButton">Favorites</button>
             </form>
           </div>
@@ -143,21 +142,32 @@ class SearchBoxes extends React.Component {
                   onMouseEnter={this.onHover.bind(this)}
                   onMouseLeave={this.onHover.bind(this)}
                 >
-                  <img className="image" src={faker.image.food()} />
+                  <img className="image" src={recipe.recipe.image} />
                   <img
                     style={styles.heart}
                     src="https://vectorskey.com/wp-content/uploads/2019/01/red-heart-png.png"
-                    // onClick={this.saveRecipe(recipe.title, recipe.ingredients)}
+                    // onClick={this.saveRecipe()}
                   />
                 </div>
-                <span className="title">{recipe.title}</span>
+                <span className="title">{recipe.recipe.label}</span>
+                <button className="expand" onClick={this.toggle}>
+                  See Ingredients!
+                </button>
                 {<br />}
-                <div className="recipeColumn">
-                  {recipe.ingredients.split(",").map((ingredient, i) => (
-                    <li className="ingredients">{ingredient}</li>
-                  ))}
-                  {<br />}
-                </div>
+                <Expand
+                  open={this.state.open}
+                  duration={500}
+                  styles={styles}
+                  transitions={transitions}
+                >
+                  {/* <ExpandBoxes> */}
+                  <div className="recipeColumn">
+                    {recipe.recipe.ingredientLines.map((ingredient, i) => (
+                      <li className="ingredients">{"- " + ingredient}</li>
+                    ))}
+                  </div>
+                  {/* </ExpandBoxes> */}
+                </Expand>
               </span>
             ))}
           </div>
