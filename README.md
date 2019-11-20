@@ -1,2 +1,1 @@
-# urban-scrabble
-Scrabble game logic with the api of Urban Dictionary
+# recipe-finder
